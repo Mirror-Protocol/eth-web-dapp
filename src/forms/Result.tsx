@@ -2,11 +2,8 @@ import { useEffect, useState } from "react"
 import { useRecoilValue } from "recoil"
 import { ethers } from "ethers"
 import Wait, { STATUS } from "../components/Wait"
-import Icon from "../components/Icon"
-import MirrorLink from "../containers/MirrorLink"
 import { providerState } from "../database/atoms"
 import TxHash from "./TxHash"
-import styles from "./Result.module.scss"
 
 interface Props {
   hash: string
