@@ -1,10 +1,8 @@
 import { useState } from "react"
-import delist from "../whitelist/delist.json"
+import { delistedSymbols } from "../whitelist/delisted"
 import Modal from "../containers/Modal"
 import DelistModalContent from "./DelistModalContent"
 import Banner from "./Banner"
-
-export const delistSymbols = Object.keys(delist).join(", ")
 
 const DelistAlert = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,7 +11,9 @@ const DelistAlert = () => {
 
   return (
     <>
-      <Banner title={`${delistSymbols} is scheduled to be delisted from mETH`}>
+      <Banner
+        title={`${delistedSymbols} is scheduled to be delisted from mETH`}
+      >
         <button onClick={open}>Details</button>
       </Banner>
 

@@ -4,6 +4,7 @@ import Grid from "../../components/Grid"
 import { isAsset } from "../../types/isItem"
 import { infoQuery } from "../../database/info"
 import { useListed } from "../../database/assets"
+import { isDelisted } from "../../whitelist/delisted"
 import StakeItem from "./StakeItem"
 
 const StakeList = () => {
@@ -14,12 +15,11 @@ const StakeList = () => {
     <Grid wrap={3}>
       {listed
         .filter(isAsset)
-        .sort(({ token: a }, { token: b }) =>
-          number(minus(info[b].apr, info[a].apr))
-        )
         .sort(
-          ({ symbol: a }, { symbol: b }) =>
-            getSymbolIndex(a) - getSymbolIndex(b)
+          (a, b) =>
+            getSymbolIndex(a.symbol) - getSymbolIndex(b.symbol) ||
+            Number(isDelisted(a.symbol)) - Number(isDelisted(b.symbol)) ||
+            number(minus(info[b.token].apr, info[a.token].apr))
         )
         .map(({ token }) => (
           <StakeItem {...info[token]} key={token} />
