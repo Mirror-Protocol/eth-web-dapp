@@ -25,10 +25,11 @@ export interface Props {
   to?: string
   action?: ReactNode
   emphasize?: boolean
+  isDelisted: boolean
 }
 
 const StakeItemCard: FC<Props> = ({ token, symbol, name, to, ...item }) => {
-  const { staked, stakable } = item
+  const { staked, stakable, isDelisted } = item
   const { price, apr, totalStaked, action, emphasize, children } = item
 
   const badges = [
@@ -51,7 +52,10 @@ const StakeItemCard: FC<Props> = ({ token, symbol, name, to, ...item }) => {
           <TokenPair symbol={symbol} />
 
           <header className={cx(styles.header, { to })}>
-            <h1 className={styles.heading}>{name ?? getLpName(symbol)}</h1>
+            <h1 className={styles.heading}>
+              {name ?? getLpName(symbol)}
+              {isDelisted && " (Delisted)"}
+            </h1>
             {to && <Icon name="chevron_right" size={20} />}
           </header>
 

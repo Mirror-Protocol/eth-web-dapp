@@ -14,12 +14,11 @@ const StakeList = () => {
     <Grid wrap={3}>
       {listed
         .filter(isAsset)
-        .sort(({ token: a }, { token: b }) =>
-          number(minus(info[b].apr, info[a].apr))
-        )
         .sort(
-          ({ symbol: a }, { symbol: b }) =>
-            getSymbolIndex(a) - getSymbolIndex(b)
+          (a, b) =>
+            getSymbolIndex(a.symbol) - getSymbolIndex(b.symbol) ||
+            Number(isDelisted(a.status)) - Number(isDelisted(b.status)) ||
+            number(minus(info[b.token].apr, info[a.token].apr))
         )
         .map(({ token }) => (
           <StakeItem {...info[token]} key={token} />
@@ -32,3 +31,4 @@ export default StakeList
 
 /* helpers */
 const getSymbolIndex = (symbol: string) => (symbol === "MIR" ? 0 : 1)
+const isDelisted = (status: "LISTED" | "DELISTED") => status === "DELISTED"

@@ -121,7 +121,7 @@
     "token": "0x1d350417d9787E000cc1b95d70E9536DcD91F373",
     "lp": "0xd7f97aa0317C08A1F5C2732e7894933f11724868",
     "pool": "0xE214a6ca22BE90f011f34FDddC7c5A07800F8BCd",
-    "status": "LISTED"
+    "status": "DELISTED"
   },
   "0x9d1555d8cB3C846Bb4f7D5B1B1080872c3166676": {
     "symbol": "mSLV",
@@ -145,6 +145,6 @@
     "token": "0xf72FCd9DCF0190923Fadd44811E240Ef4533fc86",
     "lp": "0x6094367ea57ff4f545e2672e024393d82a1d3F28",
     "pool": "0xBC07342D01fF5D72021Bb4cb95F07C252e575309",
-    "status": "LISTED"
+    "status": "DELISTED"
   }
 }

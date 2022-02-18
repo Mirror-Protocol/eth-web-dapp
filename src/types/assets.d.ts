@@ -13,7 +13,7 @@ interface ListedAsset {
   token: string
   lp: string
   pool: string
-  status: string
+  status: "LISTED" | "DELISTED"
 }
 
 type ListedType = "all" | "listed"

@@ -1,7 +1,5 @@
 import { useRecoilValue } from "recoil"
 
-import delist from "../../whitelist/delist.json"
-
 import { gt } from "../../libs/math"
 import { format, formatAsset } from "../../libs/parse"
 import { percent } from "../../libs/num"
@@ -13,10 +11,11 @@ import AddToMetamask from "./AddToMetamask"
 import StakeItemButton from "./StakeItemButton"
 
 const StakeItem = (props: AssetInfo) => {
-  const { token, symbol, lp, pool, price, apr, lpStaked } = props
+  const { token, symbol, status, lp, pool, price, apr, lpStaked } = props
   const stakable = useRecoilValue(balanceQuery(lp))
   const staked = useRecoilValue(balanceQuery(pool))
   const { swap, add } = useRecoilValue(uniswapLinksQuery(token))
+  const isDelisted = status === "DELISTED"
 
   const item = {
     token,
@@ -27,9 +26,8 @@ const StakeItem = (props: AssetInfo) => {
     totalStaked: formatAsset(lpStaked, "LP", { integer: true }),
     price: `${format(price)} UST`,
     emphasize: symbol === "MIR",
+    isDelisted,
   }
-
-  const isDelisted = Object.keys(delist).includes(symbol)
 
   return (
     <StakeItemCard {...item} action={<AddToMetamask {...props} />}>
