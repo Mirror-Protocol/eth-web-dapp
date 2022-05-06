@@ -3,10 +3,12 @@ import Icon from "../components/Icon"
 import MetaMask from "../images/wallets/Metamask.png"
 import WalletConnect from "../images/wallets/WalletConnect.png"
 import CoinbaseWallet from "../images/wallets/CoinbaseWallet.png"
+import Unstoppable from "../images/wallets/Unstoppable.png"
 import useOnboard from "../ethereum/useOnboard"
 import { useSelectWalletModal } from "../database/selectWalletModal"
 import useWalletConnect from "./useWalletConnect"
 import useCoinbase from "./useCoinbase"
+import useUnstoppable from "./useUnstoppable"
 import styles from "./SelectWallet.module.scss"
 
 const SelectWallet = () => {
@@ -14,6 +16,7 @@ const SelectWallet = () => {
   const { onClick: onClickMetaMask } = useOnboard()
   const { onClick: onClickWalletConnect } = useWalletConnect()
   const { onClick: onClickCoinbase } = useCoinbase()
+  const { onClick: onClickUnstoppable } = useUnstoppable()
 
   const buttons = [
     {
@@ -30,6 +33,11 @@ const SelectWallet = () => {
       src: CoinbaseWallet,
       label: "Coinbase Wallet",
       onClick: onClickCoinbase,
+    },
+    {
+      src: Unstoppable,
+      label: "Unstoppable Domains",
+      onClick: onClickUnstoppable,
     },
   ]
 
